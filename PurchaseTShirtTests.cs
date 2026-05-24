@@ -41,7 +41,7 @@ public class PurchaseTShirtTests : PageTest
 
         // Step 5 - Verify Products page is displayed
         await Expect(Page).ToHaveURLAsync(InventoryPage.InventoryPageUrl);
-        await Expect(Page.Locator(InventoryPage.ProductsTitle)).ToHaveTextAsync(InventoryPage.ProductsTitleText);
+        await Expect(Page.Locator(CommonSelectors.Title)).ToHaveTextAsync(InventoryPage.ProductsTitleText);
         await Expect(Page.Locator(InventoryPage.ProductsList)).ToBeVisibleAsync();
 
         // Step 6 - Select "Sauce Labs Bolt T-Shirt"
@@ -49,7 +49,7 @@ public class PurchaseTShirtTests : PageTest
 
         // Verify product details page is displayed
         await Expect(Page).ToHaveURLAsync(InventoryItem.InventoryItemUrl);
-        await Expect(Page.Locator(InventoryItem.CartIcon)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.CartIcon)).ToBeVisibleAsync();
 
         await Expect(Page.Locator(InventoryItem.BackButton)).ToBeVisibleAsync();
         await Expect(Page.Locator(InventoryItem.BackButton)).ToHaveTextAsync(InventoryItem.BackButtonText);
@@ -74,35 +74,35 @@ public class PurchaseTShirtTests : PageTest
         cartItemCount++;
 
         // Step 8 - Verify cart badge shows 1
-        await Expect(Page.Locator(InventoryItem.CartBadge)).ToHaveTextAsync(InventoryItem.CartBadgeText(cartItemCount));
+        await Expect(Page.Locator(CommonSelectors.CartBadge)).ToHaveTextAsync(InventoryItem.CartBadgeText(cartItemCount));
 
         // Step 9 - Navigate to cart
-        await Page.ClickAsync(InventoryItem.CartIcon);
+        await Page.ClickAsync(CommonSelectors.CartIcon);
 
-                // Step 10 - Verify cart page is displayed
+        // Step 10 - Verify cart page is displayed
         await Expect(Page).ToHaveURLAsync(YourCartPage.YourCartPageUrl);
         await Expect(Page.Locator(YourCartPage.CartList)).ToBeVisibleAsync();
 
-        await Expect(Page.Locator(YourCartPage.Title)).ToBeVisibleAsync();
-        await Expect(Page.Locator(YourCartPage.Title)).ToHaveTextAsync(YourCartPage.TitleText);
+        await Expect(Page.Locator(CommonSelectors.Title)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.Title)).ToHaveTextAsync(YourCartPage.TitleText);
 
-        await Expect(Page.Locator(YourCartPage.QTYLabel)).ToBeVisibleAsync();
-        await Expect(Page.Locator(YourCartPage.QTYLabel)).ToHaveTextAsync(YourCartPage.QTYText);
+        await Expect(Page.Locator(CommonSelectors.QTYLabel)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.QTYLabel)).ToHaveTextAsync(CommonSelectors.QTYLabelText);
 
-        await Expect(Page.Locator(YourCartPage.DescLabel)).ToBeVisibleAsync();
-        await Expect(Page.Locator(YourCartPage.DescLabel)).ToHaveTextAsync(YourCartPage.DescLabelText);
+        await Expect(Page.Locator(CommonSelectors.DescLabel)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.DescLabel)).ToHaveTextAsync(CommonSelectors.DescLabelText);
 
-        await Expect(Page.Locator(YourCartPage.ItemTitle)).ToBeVisibleAsync();
-        await Expect(Page.Locator(YourCartPage.ItemTitle)).ToHaveTextAsync(TestData.ProductName);
+        await Expect(Page.Locator(CommonSelectors.ItemName)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.ItemName)).ToHaveTextAsync(TestData.ProductName);
 
-        await Expect(Page.Locator(YourCartPage.ItemQTY)).ToBeVisibleAsync();
-        await Expect(Page.Locator(YourCartPage.ItemQTY)).ToHaveTextAsync("1");
+        await Expect(Page.Locator(CommonSelectors.ItemQTY)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.ItemQTY)).ToHaveTextAsync("1");
 
-        await Expect(Page.Locator(YourCartPage.ItemDesc)).ToBeVisibleAsync();
-        await Expect(Page.Locator(YourCartPage.ItemDesc)).ToHaveTextAsync(TestData.ProductDesc);
+        await Expect(Page.Locator(CommonSelectors.ItemDesc)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.ItemDesc)).ToHaveTextAsync(TestData.ProductDesc);
 
-        await Expect(Page.Locator(YourCartPage.ItemPrice)).ToBeVisibleAsync();
-        await Expect(Page.Locator(YourCartPage.ItemPrice)).ToHaveTextAsync(TestData.ProductPrice);
+        await Expect(Page.Locator(CommonSelectors.ItemPrice)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.ItemPrice)).ToHaveTextAsync(TestData.ProductPrice);
 
         await Expect(Page.Locator(YourCartPage.RemoveButton)).ToBeVisibleAsync();
         await Expect(Page.Locator(YourCartPage.RemoveButton)).ToHaveTextAsync(YourCartPage.RemoveButtonText);
@@ -113,21 +113,21 @@ public class PurchaseTShirtTests : PageTest
         await Expect(Page.Locator(YourCartPage.CheckoutButton)).ToBeVisibleAsync();
         await Expect(Page.Locator(YourCartPage.CheckoutButton)).ToHaveTextAsync(YourCartPage.CheckoutButtonText);
 
-                // Step 11 - Click Checkout button
+        // Step 11 - Click Checkout button
         await Page.ClickAsync(YourCartPage.CheckoutButton);
 
         // Verify checkout information page is displayed
         await Expect(Page).ToHaveURLAsync(CheckoutPage.CheckoutStepOneUrl);
-        await Expect(Page.Locator(CheckoutPage.Title)).ToHaveTextAsync(CheckoutPage.TitleText);
+        await Expect(Page.Locator(CommonSelectors.Title)).ToHaveTextAsync(CheckoutPage.TitleText);
         await Expect(Page.Locator(CheckoutPage.CheckoutContainer)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutPage.FirstNameInput)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutPage.LastNameInput)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutPage.ZipCodeInput)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutPage.ContinueButton)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutPage.ContinueButton)).ToHaveTextAsync(CheckoutPage.ContinueButtonText);
-        await Expect(Page.Locator(CheckoutPage.CancelButton)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutPage.CancelButton)).ToHaveTextAsync(CheckoutPage.CancelButtonText);
-        await Expect(Page.Locator(InventoryItem.CartBadge)).ToHaveTextAsync(InventoryItem.CartBadgeText(cartItemCount));
+        await Expect(Page.Locator(CommonSelectors.CancelButton)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.CancelButton)).ToHaveTextAsync(CommonSelectors.CancelButtonText);
+        await Expect(Page.Locator(CommonSelectors.CartBadge)).ToHaveTextAsync(InventoryItem.CartBadgeText(cartItemCount));
 
         // Step 12 - Enter First Name
         await Page.FillAsync(CheckoutPage.FirstNameInput, TestData.FirstName);
@@ -144,69 +144,70 @@ public class PurchaseTShirtTests : PageTest
         // Step 16 - Verify order summary page is displayed
         await Expect(Page).ToHaveURLAsync(CheckoutOverviewPage.CheckoutStepTwoUrl);
 
-        await Expect(Page.Locator(CheckoutOverviewPage.Title)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.Title)).ToHaveTextAsync(CheckoutOverviewPage.TitleText);
-        await Expect(Page.Locator(CheckoutOverviewPage.QTYLabel)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.QTYLabel)).ToHaveTextAsync(CheckoutOverviewPage.QTYLabelText);
+        await Expect(Page.Locator(CommonSelectors.Title)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.Title)).ToHaveTextAsync(CheckoutOverviewPage.TitleText);
 
-        await Expect(Page.Locator(CheckoutOverviewPage.DescLabel)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.DescLabel)).ToHaveTextAsync(CheckoutOverviewPage.DescLabelText);
+        await Expect(Page.Locator(CommonSelectors.QTYLabel)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.QTYLabel)).ToHaveTextAsync(CommonSelectors.QTYLabelText);
 
-        await Expect(Page.Locator(CheckoutOverviewPage.ItemQTY)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.ItemQTY)).ToHaveTextAsync("1");
+        await Expect(Page.Locator(CommonSelectors.DescLabel)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.DescLabel)).ToHaveTextAsync(CommonSelectors.DescLabelText);
 
-        await Expect(Page.Locator(CheckoutOverviewPage.ItemName)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.ItemName)).ToHaveTextAsync(TestData.ProductName);
+        await Expect(Page.Locator(CommonSelectors.ItemQTY)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.ItemQTY)).ToHaveTextAsync("1");
 
-        await Expect(Page.Locator(CheckoutOverviewPage.ItemDesc)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.ItemDesc)).ToHaveTextAsync(TestData.ProductDesc);
+        await Expect(Page.Locator(CommonSelectors.ItemName)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.ItemName)).ToHaveTextAsync(TestData.ProductName);
 
-        await Expect(Page.Locator(CheckoutOverviewPage.ItemPrice)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.ItemPrice)).ToHaveTextAsync(TestData.ProductPrice);
+        await Expect(Page.Locator(CommonSelectors.ItemDesc)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.ItemDesc)).ToHaveTextAsync(TestData.ProductDesc);
+
+        await Expect(Page.Locator(CommonSelectors.ItemPrice)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.ItemPrice)).ToHaveTextAsync(TestData.ProductPrice);
 
         await Expect(Page.Locator(CheckoutOverviewPage.PaymentInfoLabel)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutOverviewPage.PaymentInfoLabel)).ToHaveTextAsync(CheckoutOverviewPage.PaymentInfoLabelText);
 
         await Expect(Page.Locator(CheckoutOverviewPage.PaymentInfoValue)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.PaymentInfoValue)).ToHaveTextAsync(CheckoutOverviewPage.PaymentInfoValueText);
+        await Expect(Page.Locator(CheckoutOverviewPage.PaymentInfoValue)).ToHaveTextAsync(TestData.PaymentInfoValueText);
 
         await Expect(Page.Locator(CheckoutOverviewPage.ShippingInfoLabel)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutOverviewPage.ShippingInfoLabel)).ToHaveTextAsync(CheckoutOverviewPage.ShippingInfoLabelText);
 
         await Expect(Page.Locator(CheckoutOverviewPage.ShippingInfoValue)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.ShippingInfoValue)).ToHaveTextAsync(CheckoutOverviewPage.ShippingInfoValueText);
+        await Expect(Page.Locator(CheckoutOverviewPage.ShippingInfoValue)).ToHaveTextAsync(TestData.ShippingInfoValueText);
 
         await Expect(Page.Locator(CheckoutOverviewPage.SubtotalLabel)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.SubtotalLabel)).ToHaveTextAsync(CheckoutOverviewPage.SubtotalLabelText);
+        await Expect(Page.Locator(CheckoutOverviewPage.SubtotalLabel)).ToHaveTextAsync(TestData.SubtotalLabelText);
 
         await Expect(Page.Locator(CheckoutOverviewPage.TaxLabel)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.TaxLabel)).ToHaveTextAsync(CheckoutOverviewPage.TaxLabelText);
+        await Expect(Page.Locator(CheckoutOverviewPage.TaxLabel)).ToHaveTextAsync(TestData.TaxLabelText);
 
         await Expect(Page.Locator(CheckoutOverviewPage.TotalLabel)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.TotalLabel)).ToHaveTextAsync(CheckoutOverviewPage.TotalLabelText);
+        await Expect(Page.Locator(CheckoutOverviewPage.TotalLabel)).ToHaveTextAsync(TestData.TotalLabelText);
 
         await Expect(Page.Locator(CheckoutOverviewPage.FinishButton)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutOverviewPage.FinishButton)).ToHaveTextAsync(CheckoutOverviewPage.FinishButtonText);
 
-        await Expect(Page.Locator(CheckoutOverviewPage.CancelButton)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutOverviewPage.CancelButton)).ToHaveTextAsync(CheckoutOverviewPage.CancelButtonText);
+        await Expect(Page.Locator(CommonSelectors.CancelButton)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.CancelButton)).ToHaveTextAsync(CommonSelectors.CancelButtonText);
 
         // Step 17 - Click Finish
         await Page.ClickAsync(CheckoutOverviewPage.FinishButton);
 
         // Step 18 - Verify success message
         await Expect(Page).ToHaveURLAsync(CheckoutCompletePage.CheckoutCompleteUrl);
-        await Expect(Page.Locator(CheckoutCompletePage.Title)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutCompletePage.Title)).ToHaveTextAsync(CheckoutCompletePage.TitleText);
+        await Expect(Page.Locator(CommonSelectors.Title)).ToBeVisibleAsync();
+        await Expect(Page.Locator(CommonSelectors.Title)).ToHaveTextAsync(CheckoutCompletePage.TitleText);
         await Expect(Page.Locator(CheckoutCompletePage.SuccessMessage)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutCompletePage.SuccessMessage)).ToHaveTextAsync(CheckoutCompletePage.SuccessMessageText);
         await Expect(Page.Locator(CheckoutCompletePage.SuccessSubMessage)).ToBeVisibleAsync();
-        await Expect(Page.Locator(CheckoutCompletePage.SuccessSubMessage)).ToHaveTextAsync(CheckoutCompletePage.SuccessSubMessagText);
+        await Expect(Page.Locator(CheckoutCompletePage.SuccessSubMessage)).ToHaveTextAsync(CheckoutCompletePage.SuccessSubMessageText);
         await Expect(Page.Locator(CheckoutCompletePage.BackHomeButton)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutCompletePage.BackHomeButton)).ToHaveTextAsync(CheckoutCompletePage.BackHomeButtonText);
 
         // Step 19 - Verify cart badge disappears after purchase
-        await Expect(Page.Locator(InventoryItem.CartBadge)).ToHaveCountAsync(0);
+        await Expect(Page.Locator(CommonSelectors.CartBadge)).ToHaveCountAsync(0);
 
         // Step 20 - Open burger menu
         await Page.ClickAsync(BurgerMenuPage.MenuButton);
