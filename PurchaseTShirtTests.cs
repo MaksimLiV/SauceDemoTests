@@ -209,11 +209,18 @@ public class PurchaseTShirtTests : PageTest
         await Expect(Page.Locator(InventoryItem.CartBadge)).ToHaveCountAsync(0);
 
         // Step 20 - Open burger menu
-        await Page.ClickAsync("#react-burger-menu-btn");
-        await Expect(Page.Locator("#logout_sidebar_link")).ToBeVisibleAsync();
+        await Page.ClickAsync(BurgerMenuPage.MenuButton);
+        await Expect(Page.Locator(BurgerMenuPage.AllItemsButton)).ToBeVisibleAsync();
+        await Expect(Page.Locator(BurgerMenuPage.AllItemsButton)).ToHaveTextAsync(BurgerMenuPage.AllItemsButtonText);
+        await Expect(Page.Locator(BurgerMenuPage.AboutButton)).ToBeVisibleAsync();
+        await Expect(Page.Locator(BurgerMenuPage.AboutButton)).ToHaveTextAsync(BurgerMenuPage.AboutButtonText);
+        await Expect(Page.Locator(BurgerMenuPage.LogoutButton)).ToBeVisibleAsync();
+        await Expect(Page.Locator(BurgerMenuPage.LogoutButton)).ToHaveTextAsync(BurgerMenuPage.LogoutButtonText);
+        await Expect(Page.Locator(BurgerMenuPage.ResetAppButton)).ToBeVisibleAsync();
+        await Expect(Page.Locator(BurgerMenuPage.ResetAppButton)).ToHaveTextAsync(BurgerMenuPage.ResetAppButtonText);
 
         // Step 21 - Click Logout
-        await Page.ClickAsync("#logout_sidebar_link");
+        await Page.ClickAsync(BurgerMenuPage.LogoutButton);
 
         // Verify redirected back to login page
         await Expect(Page).ToHaveURLAsync(LoginPage.BaseUrl);
