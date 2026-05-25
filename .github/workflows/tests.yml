@@ -31,7 +31,14 @@ jobs:
           pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
 
       - name: Run Sauce Demo tests
-        run: dotnet test --settings ci.runsettings
+        run: dotnet test --settings ci.runsettings --logger "html;logfilename=test-report.html" --results-directory TestResults
         env:
           SECRET_USERNAME: ${{ secrets.SECRET_USERNAME }}
           SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-report
+          path: TestResults/test-report.html
