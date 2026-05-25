@@ -22,17 +22,14 @@ jobs:
 
       - name: Restore project dependencies
         run: dotnet restore
-        working-directory: SauceDemoTests/SauceDemoTests
 
       - name: Build and install Playwright browsers
         run: |
           dotnet build
           pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
-        working-directory: SauceDemoTests/SauceDemoTests
 
       - name: Run Sauce Demo tests
         run: dotnet test --settings .runsettings
-        working-directory: SauceDemoTests/SauceDemoTests
         env:
           SECRET_USERNAME: ${{ secrets.SECRET_USERNAME }}
           SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
