@@ -1,6 +1,6 @@
 # SauceDemoTests
 
-E2E tests for [saucedemo.com](https://www.saucedemo.com) — automated purchase flow for "Sauce Labs Bolt T-Shirt" from login to logout.
+E2E tests for [saucedemo.com](https://www.saucedemo.com) — automated purchase flow for "Sauce Labs Bolt T-Shirt"
 
 ## Tech Stack
 
