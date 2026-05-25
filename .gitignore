@@ -1,7 +1,7 @@
-cat > .gitignore << 'EOF'
 bin/
 obj/
 .playwright/
 *.user
 .DS_Store
-EOF
+TestResults/
+.env

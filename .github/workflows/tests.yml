@@ -31,7 +31,7 @@ jobs:
           pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
 
       - name: Run Sauce Demo tests
-        run: dotnet test --settings .runsettings
+        run: dotnet test --settings ci.runsettings
         env:
           SECRET_USERNAME: ${{ secrets.SECRET_USERNAME }}
           SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
