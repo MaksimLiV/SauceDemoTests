@@ -14,8 +14,10 @@ public static class LoginPage
 
     // Test Data
 
-    public const string Username = "standard_user";
-    public const string Password = "secret_sauce";
+    public static readonly string Username = Environment.GetEnvironmentVariable("SECRET_USERNAME")
+        ?? throw new InvalidOperationException("SECRET_USERNAME environment variable is not set");
+    public static readonly string Password = Environment.GetEnvironmentVariable("SECRET_PASSWORD")
+        ?? throw new InvalidOperationException("SECRET_PASSWORD environment variable is not set");
 
     // Expected Values
     public const string LoginLogoText = "Swag Labs";

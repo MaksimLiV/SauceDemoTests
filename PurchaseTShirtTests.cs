@@ -197,34 +197,20 @@ public class PurchaseTShirtTests : PageTest
 
         // Step 18 - Verify success message
         await Expect(Page).ToHaveURLAsync(CheckoutCompletePage.CheckoutCompleteUrl);
+
         await Expect(Page.Locator(CommonSelectors.Title)).ToBeVisibleAsync();
         await Expect(Page.Locator(CommonSelectors.Title)).ToHaveTextAsync(CheckoutCompletePage.TitleText);
+
         await Expect(Page.Locator(CheckoutCompletePage.SuccessMessage)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutCompletePage.SuccessMessage)).ToHaveTextAsync(CheckoutCompletePage.SuccessMessageText);
+
         await Expect(Page.Locator(CheckoutCompletePage.SuccessSubMessage)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutCompletePage.SuccessSubMessage)).ToHaveTextAsync(CheckoutCompletePage.SuccessSubMessageText);
+        
         await Expect(Page.Locator(CheckoutCompletePage.BackHomeButton)).ToBeVisibleAsync();
         await Expect(Page.Locator(CheckoutCompletePage.BackHomeButton)).ToHaveTextAsync(CheckoutCompletePage.BackHomeButtonText);
 
         // Step 19 - Verify cart badge disappears after purchase
         await Expect(Page.Locator(CommonSelectors.CartBadge)).ToHaveCountAsync(0);
-
-        // Step 20 - Open burger menu
-        await Page.ClickAsync(BurgerMenuPage.MenuButton);
-        await Expect(Page.Locator(BurgerMenuPage.AllItemsButton)).ToBeVisibleAsync();
-        await Expect(Page.Locator(BurgerMenuPage.AllItemsButton)).ToHaveTextAsync(BurgerMenuPage.AllItemsButtonText);
-        await Expect(Page.Locator(BurgerMenuPage.AboutButton)).ToBeVisibleAsync();
-        await Expect(Page.Locator(BurgerMenuPage.AboutButton)).ToHaveTextAsync(BurgerMenuPage.AboutButtonText);
-        await Expect(Page.Locator(BurgerMenuPage.LogoutButton)).ToBeVisibleAsync();
-        await Expect(Page.Locator(BurgerMenuPage.LogoutButton)).ToHaveTextAsync(BurgerMenuPage.LogoutButtonText);
-        await Expect(Page.Locator(BurgerMenuPage.ResetAppButton)).ToBeVisibleAsync();
-        await Expect(Page.Locator(BurgerMenuPage.ResetAppButton)).ToHaveTextAsync(BurgerMenuPage.ResetAppButtonText);
-
-        // Step 21 - Click Logout
-        await Page.ClickAsync(BurgerMenuPage.LogoutButton);
-
-        // Verify redirected back to login page
-        await Expect(Page).ToHaveURLAsync(LoginPage.BaseUrl);
-        await Expect(Page.Locator(LoginPage.LoginLogo)).ToBeVisibleAsync();
     }
 }

@@ -1,0 +1,38 @@
+name: Run Playwright tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore project dependencies
+        run: dotnet restore
+        working-directory: SauceDemoTests
+
+      - name: Build and install Playwright browsers
+        run: |
+          dotnet build
+          pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
+        working-directory: SauceDemoTests
+
+      - name: Run Sauce Demo tests
+        run: dotnet test --settings .runsettings
+        working-directory: SauceDemoTests
+        env:
+          SECRET_USERNAME: ${{ secrets.SECRET_USERNAME }}
+          SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}

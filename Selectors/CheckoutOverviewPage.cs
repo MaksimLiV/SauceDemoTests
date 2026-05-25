@@ -1,9 +1,5 @@
 namespace SauceDemoTests.Selectors;
 
-// Shared selectors moved to CommonSelectors:
-// Title, ItemName, ItemDesc, ItemPrice, ItemQTY,
-// QTYLabel, DescLabel, CancelButton, CancelButtonText, QTYLabelText, DescLabelText
-
 public static class CheckoutOverviewPage
 {
     // URL
